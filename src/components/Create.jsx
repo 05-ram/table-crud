@@ -1,25 +1,30 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom';
-import users from '../data/users';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser } from '../app/feature/userSlice';
 
 
 const Create = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const canSubmit = Boolean(name) && Boolean(email);
+    const dispatch = useDispatch();
+    const userList = useSelector((state) => state.user)
 
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        users.push({
-            name, email
-        })
+        dispatch(addUser({
+            id: Number(userList[userList.length - 1].id) + 1,
+            name,
+            email
+        }))
         navigate('/')
     }
     return (
-        <div className='create-page'>
+        <div className='crud-page'>
             <Link to={'/'}>
                 <Button variant='outline-light'>Back</Button>
             </Link>

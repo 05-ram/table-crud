@@ -1,10 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Error = () => {
     return (
-        <div className='err-page d-flex justify-content-center align-items-center'>
-            404 Error Found
-        </div>
+        <>
+            <div className='d-flex justify-content-center flex-column align-items-center'>
+                <div className="err-page text-center">404 Error Found</div>
+                <Link to='/'>Back To Home</Link>
+            </div>
+        </>
     )
 }
 

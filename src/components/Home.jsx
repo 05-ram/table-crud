@@ -34,7 +34,9 @@ const Home = () => {
                       <td>{user.email}</td>
                       <td>
                         <Stack direction='horizontal' gap={3}>
-                          <Button variant='primary'>Edit</Button>
+                          <Link to={`/update/${user.id}`}>
+                            <Button variant='primary'>Edit</Button>
+                          </Link>
                           <Button variant='danger'>Delete</Button>
                         </Stack>
                       </td>
