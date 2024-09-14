@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { updateUser } from '../app/feature/userSlice';
 
 const Update = () => {
@@ -12,6 +12,7 @@ const Update = () => {
     const [uname, setUname] = useState(name);
     const [uemail, setUemail] = useState(email);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(updateUser({
@@ -19,9 +20,13 @@ const Update = () => {
             name: uname,
             email: uemail
         }))
+        navigate('/');
     }
     return (
         <div className='crud-page'>
+            <Link to={'/'}>
+                <Button variant='outline-light'>Back</Button>
+            </Link>
             <div className='edit-form'>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="name">
